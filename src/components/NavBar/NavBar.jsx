@@ -9,7 +9,7 @@ const NavBar = ({ user, handleLogout }) => {
           <li>Welcome, {user.name}</li>
           <li>Home</li>
           <li>About</li>
-          <li>Blogs</li>
+          <li><NavLink to="/blogs">Blogs</NavLink></li>
           <li>Vlogs</li>
           <li>Search</li>
           <li><NavLink to="/profiles">Profiles</NavLink></li>
