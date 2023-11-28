@@ -9,6 +9,7 @@ import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import BlogList from './pages/BlogList/BlogList'
+import NewBlog from './pages/NewBlog/NewBlog'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -29,24 +30,32 @@ function App() {
 
   const navigate = useNavigate()
 
+  // handle events
   const handleLogout = () => {
     authService.logout()
     setUser(null)
     navigate('/')
   }
 
+  const handleAuthEvt = () => {
+    setUser(authService.getUser())
+  }
+  
+  const handleAddBlog = async (blogFormData) => {
+    const newBlog = await blogService.create(blogFormData)
+    setBlogs([newBlog, ...blogs])
+    navigate('/blogs')
+  }
+  
+  // use effects
   useEffect(() => {
     const fetchAllBlogs = async () => {
       const blogData = await blogService.index()
-      console.log(blogData)
+      // console.log(blogData)
       setBlogs(blogData)
     }
     fetchAllBlogs()
   }, [])
-
-  const handleAuthEvt = () => {
-    setUser(authService.getUser())
-  }
 
   return (
     <>
@@ -87,6 +96,12 @@ function App() {
           path='/blogs/:blogId'
           element={
             <BlogDetails />
+          }
+        />
+        <Route 
+          path='/blogs/newBlog'
+          element={
+            <NewBlog />
           }
         />
       </Routes>
