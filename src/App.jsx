@@ -21,6 +21,7 @@ import * as blogService from './services/BlogService'
 
 // styles
 import './App.css'
+import BlogDetails from './pages/BlogDetails/BlogDetails'
 
 function App() {
   const [user, setUser] = useState(authService.getUser())
@@ -80,6 +81,12 @@ function App() {
           path="/blogs"
           element={
             <BlogList blogs={blogs} />
+          }
+        />
+        <Route 
+          path='/blogs/:blogId'
+          element={
+            <BlogDetails />
           }
         />
       </Routes>
