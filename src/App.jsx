@@ -10,6 +10,7 @@ import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import BlogList from './pages/BlogList/BlogList'
 import NewBlog from './pages/NewBlog/NewBlog'
+import EditBlog from './pages/EditBlog/EditBlog'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -106,7 +107,17 @@ function App() {
         <Route 
           path='/blogs/newBlog'
           element={
-            <NewBlog handleAddBlog={handleAddBlog} />
+            <ProtectedRoute user={user}>
+              <NewBlog handleAddBlog={handleAddBlog} />
+            </ProtectedRoute>
+          }
+        />
+        <Route 
+          path='/blogs/editBlog'
+          element={
+            <ProtectedRoute user={user}>
+              <EditBlog handleUpdateBlog={handleUpdateBlog} />
+            </ProtectedRoute>
           }
         />
       </Routes>
