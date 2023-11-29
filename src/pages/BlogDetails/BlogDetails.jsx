@@ -40,7 +40,7 @@ if (!blog) return <Loading />
       <section>
         {blog.author._id === props.user.profile &&
           <>
-            <Link to='/blogs/:blogId/edit'> <button>Edit Blog</button> </Link>
+            <Link to={`/blogs/${blogId}/edit`} state={blog}> <button>Edit Blog</button> </Link>
             <button>Delete Blog</button>
           </>
         }
