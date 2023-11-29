@@ -70,7 +70,7 @@ async function deleteBlog(blogId) {
 
 async function createComment(blogId, commentFormData){
   try {
-    const res = await fetch(`${BASE_URL}/${blogId}`, {
+    const res = await fetch(`${BASE_URL}/${blogId}/comments`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${tokenService.getToken()}`,

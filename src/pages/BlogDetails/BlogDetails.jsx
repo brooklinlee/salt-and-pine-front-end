@@ -5,7 +5,6 @@ import { useParams, Link } from "react-router-dom"
 
 // services
 import * as BlogService from '../../services/BlogService'
-// import * as authService from './services/authService'
 
 // components
 import Loading from '../../components/Loading/Loading'

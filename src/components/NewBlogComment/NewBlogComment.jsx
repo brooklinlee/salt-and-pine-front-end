@@ -14,8 +14,8 @@ const NewBlogComment = (props) => {
 
   function handleSubmit(evt) {
     evt.preventDefault()
-    setFormData({ text: '' })
     props.handleAddComment(formData)
+    setFormData({ text: '' })
   }
 
   return (
