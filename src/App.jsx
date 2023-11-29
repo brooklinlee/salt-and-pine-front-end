@@ -51,6 +51,7 @@ function App() {
   const handleUpdateBlog = async (blogFormData) => {
     const updatedBlog = await blogService.update(blogFormData)
     setBlogs(blogs.map((b) => blogFormData._id === b._id ? updatedBlog : b))
+    navigate('/blogs')
   }
   
   // use effects
@@ -101,7 +102,7 @@ function App() {
         <Route 
           path='/blogs/:blogId'
           element={
-            <BlogDetails />
+            <BlogDetails user={user} />
           }
         />
         <Route 
@@ -113,7 +114,7 @@ function App() {
           }
         />
         <Route 
-          path='/blogs/editBlog'
+          path='/blogs/:blogId/edit'
           element={
             <ProtectedRoute user={user}>
               <EditBlog handleUpdateBlog={handleUpdateBlog} />
