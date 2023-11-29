@@ -10,6 +10,8 @@ import * as BlogService from '../../services/BlogService'
 import Loading from '../../components/Loading/Loading'
 import AuthorInfo from "../../components/AuthorInfo/AuthorInfo"
 import NewBlogComment from "../../components/NewBlogComment/NewBlogComment"
+import CommentCard from "../../components/CommentCard/CommentCard"
+import Comments from "../../components/Comments/Comments"
 
 const BlogDetails = (props) => {
   const { blogId } = useParams()
@@ -60,6 +62,7 @@ if (!blog) return <Loading />
       <section>
         <h3>Comments</h3>
         <NewBlogComment handleAddComment={handleAddComment} />
+        <Comments comments={blog.comments} user={props.user} /> 
       </section>
     </main>
   )

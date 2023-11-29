@@ -10,7 +10,7 @@ const BlogCard = ({ blog }) => {
   return ( 
       <Link to={`/blogs/${blog._id}`}>
         <article>
-          <h1>{ blog.title}</h1>
+          <h1>{ blog.title }</h1>
           <AuthorInfo content={ blog }/>
         </article>
       </Link>
