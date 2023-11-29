@@ -51,7 +51,7 @@ function App() {
   const handleUpdateBlog = async (blogFormData) => {
     const updatedBlog = await blogService.update(blogFormData)
     setBlogs(blogs.map((b) => blogFormData._id === b._id ? updatedBlog : b))
-    navigate('/blogs')
+    navigate(`/blogs/${blogFormData._id}`)
   }
   
   // use effects

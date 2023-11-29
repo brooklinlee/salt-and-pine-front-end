@@ -68,6 +68,7 @@ function handleSubmit(evt) {
         cols="30" rows="10"
         placeholder="Blog Contents here..."
         onChange={handleChange}
+        value={formData.text}
         ></textarea>
         <button type="submit">Create New Blog</button>
       </form>

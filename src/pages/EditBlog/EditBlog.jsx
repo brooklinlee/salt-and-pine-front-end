@@ -13,7 +13,7 @@ const EditBlog = (props) => {
   
   function handleSubmit(evt) {
     evt.preventDefault()
-    // props.handleUpdateBlog(formData) // update?
+    props.handleUpdateBlog(formData) // update?
   }
   
 
@@ -67,6 +67,7 @@ const EditBlog = (props) => {
         cols="30" rows="10"
         placeholder="Blog Contents here..."
         onChange={handleChange}
+        value={formData.text}
         ></textarea>
         <button type="submit">Update Blog</button>
       </form>
