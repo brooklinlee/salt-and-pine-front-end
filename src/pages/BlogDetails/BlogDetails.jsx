@@ -41,7 +41,7 @@ if (!blog) return <Loading />
         {blog.author._id === props.user.profile &&
           <>
             <Link to={`/blogs/${blogId}/edit`} state={blog}> <button>Edit Blog</button> </Link>
-            <button>Delete Blog</button>
+            <button onClick={() => props.handleDeleteBlog(blogId)}>Delete Blog</button>
           </>
         }
       </section>

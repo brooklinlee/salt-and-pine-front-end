@@ -53,6 +53,13 @@ function App() {
     setBlogs(blogs.map((b) => blogFormData._id === b._id ? updatedBlog : b))
     navigate(`/blogs/${blogFormData._id}`)
   }
+
+  const handleDeleteBlog = async (blogId) => {
+    const deletedBlog = await blogService.deleteBlog(blogId)
+    setBlogs(blogs.filter(b => b._id !== deletedBlog._id))
+    navigate('/blogs')
+  }
+
   
   // use effects
   useEffect(() => {
@@ -102,7 +109,7 @@ function App() {
         <Route 
           path='/blogs/:blogId'
           element={
-            <BlogDetails user={user} />
+            <BlogDetails user={user} handleDeleteBlog={handleDeleteBlog} />
           }
         />
         <Route 
