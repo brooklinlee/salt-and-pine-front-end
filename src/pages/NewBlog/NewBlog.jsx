@@ -2,10 +2,9 @@ import { useState } from "react"
 
 const NewBlog = (props) => {
 const [formData, setFormData] = useState({
-  // _id: '',
   title: '',
   location: '',
-  category: 'Utah Gems', // update?
+  category: 'Utah Gems', 
   text: ''
 })
 

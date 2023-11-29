@@ -5,14 +5,23 @@ import { useParams, Link } from "react-router-dom"
 
 // services
 import * as BlogService from '../../services/BlogService'
+// import * as authService from './services/authService'
 
 // components
 import Loading from '../../components/Loading/Loading'
 import AuthorInfo from "../../components/AuthorInfo/AuthorInfo"
+import NewBlogComment from "../../components/NewBlogComment/NewBlogComment"
 
 const BlogDetails = (props) => {
   const { blogId } = useParams()
   const [blog, setBlog] = useState(null)
+
+  // const [comments, setComments] = useState([])
+
+  const handleAddComment = async (commentFormData) => {
+    const newComment = await BlogService.createComment(blogId, commentFormData)
+    setBlog({...blog, comments: [...blog.comments, newComment]})
+  }
 
   useEffect(() => {
     const fetchBlog = async() => {
@@ -51,6 +60,7 @@ if (!blog) return <Loading />
       </section>
       <section>
         <h3>Comments</h3>
+        <NewBlogComment handleAddComment={handleAddComment} />
       </section>
     </main>
   )
