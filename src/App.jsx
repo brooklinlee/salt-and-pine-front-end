@@ -101,7 +101,7 @@ function App() {
         <Route 
           path='/blogs/newBlog'
           element={
-            <NewBlog />
+            <NewBlog handleAddBlog={handleAddBlog} />
           }
         />
       </Routes>

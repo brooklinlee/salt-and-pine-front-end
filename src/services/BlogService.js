@@ -21,7 +21,7 @@ async function show(blogId) {
   }
 }
 
-async function create(blogFormData){
+async function create(blogFormData) {
   try {
     const res = await fetch(BASE_URL, {
       method: 'POST',
@@ -29,7 +29,7 @@ async function create(blogFormData){
         'Authorization': `Bearer ${tokenService.getToken()}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.strinfigy(blogFormData)
+      body: JSON.stringify(blogFormData)
     })
     return res.json()
   } catch (error) {
@@ -37,8 +37,8 @@ async function create(blogFormData){
   }
 }
 
-export { 
+export {
   index,
   show,
   create,
-  }
+}
