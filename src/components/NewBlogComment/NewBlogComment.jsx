@@ -9,7 +9,6 @@ const NewBlogComment = (props) => {
 
   function handleChange(evt) {
     setFormData({...formData, [evt.target.name]: evt.target.value})
-    // console.log(formData)
   }
 
   function handleSubmit(evt) {

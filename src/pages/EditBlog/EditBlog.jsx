@@ -68,7 +68,7 @@ const EditBlog = (props) => {
         placeholder="Blog Contents here..."
         onChange={handleChange}
         value={formData.text}
-        ></textarea>
+        />
         <button type="submit">Update Blog</button>
       </form>
     </main>

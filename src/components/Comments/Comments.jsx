@@ -8,9 +8,11 @@ const Comments = (props) => {
       <h1>Comment Section</h1>
           {props.comments.map((comment) => (
               <CommentCard 
-                comment={comment} 
                 key={comment._id} 
+                comment={comment} 
                 user={props.user} 
+                blogId={props.blogId}
+                handleEditComment={props.handleEditComment}
               />
           ))}
     </main>

@@ -10,18 +10,21 @@ import * as BlogService from '../../services/BlogService'
 import Loading from '../../components/Loading/Loading'
 import AuthorInfo from "../../components/AuthorInfo/AuthorInfo"
 import NewBlogComment from "../../components/NewBlogComment/NewBlogComment"
-import CommentCard from "../../components/CommentCard/CommentCard"
 import Comments from "../../components/Comments/Comments"
+
 
 const BlogDetails = (props) => {
   const { blogId } = useParams()
   const [blog, setBlog] = useState(null)
 
-  // const [comments, setComments] = useState([])
-
   const handleAddComment = async (commentFormData) => {
     const newComment = await BlogService.createComment(blogId, commentFormData)
     setBlog({...blog, comments: [...blog.comments, newComment]})
+  }
+
+  const handleEditComment = async (commentFormData) => {
+    const editedComment = await BlogService.updateComment(blogId, commentFormData)
+    setBlog({...blog, comments: blog.comments.map(cmt => cmt._id === commentFormData._id ? editedComment : cmt) })
   }
 
   useEffect(() => {
@@ -60,9 +63,8 @@ if (!blog) return <Loading />
       <button>Save</button>
       </section>
       <section>
-        <h3>Comments</h3>
-        <NewBlogComment handleAddComment={handleAddComment} />
-        <Comments comments={blog.comments} user={props.user} /> 
+        {props.user?.profile && <NewBlogComment handleAddComment={handleAddComment} />}
+        <Comments comments={blog.comments} user={props.user} blogId={blogId} handleEditComment={handleEditComment}  /> 
       </section>
     </main>
   )

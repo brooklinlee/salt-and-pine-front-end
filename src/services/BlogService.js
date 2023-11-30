@@ -84,11 +84,28 @@ async function createComment(blogId, commentFormData){
   }
 }
 
+async function updateComment(blogId, commentFormData)  {
+  try {
+    const res = await fetch(`${BASE_URL}/${blogId}/comments/${commentFormData._id}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(commentFormData)
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export {
   index,
   show,
   create,
   update,
   deleteBlog,
-  createComment
+  createComment,
+  updateComment,
 }

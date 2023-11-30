@@ -1,12 +1,32 @@
+// npm modules
+import { useState } from "react"
+
 // components
 import AuthorInfo from "../AuthorInfo/AuthorInfo"
+import EditComment from "../EditComment/EditComment"
 
-const CommentCard = ({ comment }) => {
+const CommentCard = (props) => {
+  const [showForm, setShowForm] = useState(false)
+
+  const handleShowForm = () => {
+    setShowForm(true)
+  }
+
+  const handleHideForm = () => {
+    setShowForm(false)
+  }
+
   return (  
       <article>
-        <h1>Comment Card</h1>
-        <AuthorInfo content={ comment } />
-        <p>{ comment.text }</p>
+        <header>
+        <AuthorInfo content={ props.comment } />
+        </header>
+        <p>{ props.comment.text }</p>
+        <div>
+        {props.comment.author?._id === props.user?.profile && <button onClick={() => handleShowForm()}>Edit</button>}
+        {props.comment.author?._id === props.user?.profile && <button onClick={() => props.handleDeleteComment(props.comment._id)}>Delete</button>}
+        </div>
+        {showForm && <EditComment comment={props.comment} handleEditComment={props.handleEditComment} handleHideForm={handleHideForm} />}
       </article>
   )
 }
