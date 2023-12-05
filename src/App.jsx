@@ -21,6 +21,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import * as authService from './services/authService'
 // import * as profileService from './services/profileService'
 import * as blogService from './services/BlogService'
+import * as vlogService from './services/VlogService'
 
 // styles
 import './App.css'
@@ -29,6 +30,7 @@ import BlogDetails from './pages/BlogDetails/BlogDetails'
 function App() {
   const [user, setUser] = useState(authService.getUser())
   const [blogs, setBlogs] = useState([])
+  const [vlogs, setVlogs] = useState([])
 
   const navigate = useNavigate()
 
@@ -64,6 +66,11 @@ function App() {
   
   // ===*VLOGS*===
   // write handleAddVlog, pass to component
+  const handleAddVlog = async (vlogFormData) => {
+    const newVlog = await vlogService.create(vlogFormData)
+    setVlogs([...vlogs, newVlog])
+    navigate('/vlogs')
+  }
   
   // use effects
   useEffect(() => {
@@ -136,7 +143,7 @@ function App() {
           path='/vlogs/newVlog'
           element={
             <ProtectedRoute user={user}>
-              <NewVlog />
+              <NewVlog handleAddVlog={handleAddVlog} />
             </ProtectedRoute>
           }
         />
