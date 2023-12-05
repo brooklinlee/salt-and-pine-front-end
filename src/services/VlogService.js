@@ -18,6 +18,15 @@ async function create(vlogFormData) {
   }
 }
 
+// create index service function
+async function index(){
+  // fetch baseURL
+  const res = await fetch(`${BASE_URL}`)
+  // return all vlogs
+  return res.json()
+}
+
 export {
   create,
+  index,
 }

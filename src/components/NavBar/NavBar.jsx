@@ -10,7 +10,7 @@ const NavBar = ({ user, handleLogout }) => {
           <li>Home</li>
           <li>About</li>
           <li><NavLink to="/blogs">Blogs</NavLink></li>
-          <li><NavLink to='/vlogs/newVlog' >Vlogs</NavLink></li>
+          <li><NavLink to='/vlogs/newVlog' >New Vlog</NavLink></li>
           <li>Search</li>
           <li><NavLink to='/blogs/newBlog'>New Blog</NavLink></li>
           <li><NavLink to="/profiles">Profiles</NavLink></li>
