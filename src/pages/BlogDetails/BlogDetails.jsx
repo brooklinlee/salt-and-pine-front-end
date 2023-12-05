@@ -26,8 +26,6 @@ const BlogDetails = (props) => {
   }
 
   const handleDeleteComment = async (commentId) => {
-    // console.log('comment ID:', commentId)
-    // const blogId = blog._id
     const deletedComment = await BlogService.deleteComment(blogId, commentId)
     setBlog({...blog, comments: blog.comments.filter(cmt => cmt._id !== deletedComment._id)})
   }
@@ -39,8 +37,6 @@ const BlogDetails = (props) => {
     }
     fetchBlog()
   }, [blogId])
-
-// console.log('Blog State: ', blog)
 
 if (!blog) return <Loading />
 

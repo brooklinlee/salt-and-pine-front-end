@@ -37,29 +37,32 @@ function App() {
     setUser(null)
     navigate('/')
   }
-
+  
   const handleAuthEvt = () => {
     setUser(authService.getUser())
   }
   
+  // ===*BLOGS*===
   const handleAddBlog = async (blogFormData) => {
     const newBlog = await blogService.create(blogFormData)
     setBlogs([newBlog, ...blogs])
     navigate('/blogs')
   }
-
+  
   const handleUpdateBlog = async (blogFormData) => {
     const updatedBlog = await blogService.update(blogFormData)
     setBlogs(blogs.map((b) => blogFormData._id === b._id ? updatedBlog : b))
     navigate(`/blogs/${blogFormData._id}`)
   }
-
+  
   const handleDeleteBlog = async (blogId) => {
     const deletedBlog = await blogService.deleteBlog(blogId)
     setBlogs(blogs.filter(b => b._id !== deletedBlog._id))
     navigate('/blogs')
   }
-
+  
+  // ===*VLOGS*===
+  // write handleAddVlog, pass to component
   
   // use effects
   useEffect(() => {
