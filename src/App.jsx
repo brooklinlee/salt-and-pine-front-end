@@ -11,6 +11,7 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 import BlogList from './pages/BlogList/BlogList'
 import NewBlog from './pages/NewBlog/NewBlog'
 import EditBlog from './pages/EditBlog/EditBlog'
+import NewVlog from './pages/NewVlog/NewVlog'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -128,6 +129,14 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <EditBlog handleUpdateBlog={handleUpdateBlog} />
+            </ProtectedRoute>
+          }
+        />
+        <Route 
+          path='/vlogs/newVlog'
+          element={
+            <ProtectedRoute user={user}>
+              <NewVlog />
             </ProtectedRoute>
           }
         />
