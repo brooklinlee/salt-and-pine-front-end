@@ -103,7 +103,7 @@ async function updateComment(blogId, commentFormData)  {
 
 async function deleteComment(blogId, commentId) {
   try {
-    console.log('service function:', `${BASE_URL}/${blogId}/comments/${commentId}`)
+    // console.log('service function:', `${BASE_URL}/${blogId}/comments/${commentId}`)
     const res = await fetch(`${BASE_URL}/${blogId}/comments/${commentId}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
