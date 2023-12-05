@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
 
-
 // services
 import * as BlogService from '../../services/BlogService'
 
@@ -11,7 +10,6 @@ import Loading from '../../components/Loading/Loading'
 import AuthorInfo from "../../components/AuthorInfo/AuthorInfo"
 import NewBlogComment from "../../components/NewBlogComment/NewBlogComment"
 import Comments from "../../components/Comments/Comments"
-
 
 const BlogDetails = (props) => {
   const { blogId } = useParams()
@@ -25,6 +23,13 @@ const BlogDetails = (props) => {
   const handleEditComment = async (commentFormData) => {
     const editedComment = await BlogService.updateComment(blogId, commentFormData)
     setBlog({...blog, comments: blog.comments.map(cmt => cmt._id === commentFormData._id ? editedComment : cmt) })
+  }
+
+  const handleDeleteComment = async (commentId) => {
+    console.log('comment ID:', commentId)
+    const blogId = blog._id
+    const deletedComment = await BlogService.deleteComment(blogId, commentId)
+    setBlog({...blog, comments: blog.comments.filter(cmt => cmt._id !== deletedComment._id)})
   }
 
   useEffect(() => {
@@ -64,7 +69,7 @@ if (!blog) return <Loading />
       </section>
       <section>
         {props.user?.profile && <NewBlogComment handleAddComment={handleAddComment} />}
-        <Comments comments={blog.comments} user={props.user} blogId={blogId} handleEditComment={handleEditComment}  /> 
+        <Comments comments={blog.comments} user={props.user} blogId={blogId} handleEditComment={handleEditComment} handleDeleteComment={handleDeleteComment} /> 
       </section>
     </main>
   )
