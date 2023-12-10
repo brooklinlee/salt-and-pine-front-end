@@ -2,15 +2,31 @@
 import { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
 
+// services
 import * as VlogService from '../../services/VlogService'
 
+// pages
 import Loading from "../../components/Loading/Loading"
 
+// components
 import AuthorInfo from "../../components/AuthorInfo/AuthorInfo"
+import NewBlogComment from "../../components/NewBlogComment/NewBlogComment"
+import Comments from "../../components/Comments/Comments"
 
 const VlogDetails = (props) => {
   const { vlogId } = useParams()
   const [vlog, setVlog] = useState(null)
+
+  // handleAddComment
+  // pass to component
+  const handleAddComment = async (commentFormData) => {
+    const newComment = await VlogService.createComment(vlogId, commentFormData)
+    setVlog({...vlog, comments: [...vlog.comments, newComment]})
+  }
+
+  // handleEditComment
+
+  // handleDeleteComment
 
   useEffect(() => {
     const fetchVlog = async() => {
@@ -40,6 +56,16 @@ const VlogDetails = (props) => {
           <button onClick={() => { props.handleDeleteVlog(vlogId) }}>Delete</button>
         </>
         }
+      </section>
+      <section>
+      <button>Like</button>
+      <button>Save</button>
+      </section>
+      <section>
+        {/* newVlogComment component, handle add comment */}
+        {props.user?.profile && <NewBlogComment handleAddComment={handleAddComment} />}
+        {/* current comments component, handle edit comment and handle delete comment */}
+        <Comments comments={vlog.comments} user={props.user} vlogId={vlogId} />
       </section>
     </>
   )

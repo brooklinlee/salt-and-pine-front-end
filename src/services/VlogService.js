@@ -66,10 +66,27 @@ async function deleteVlog(vlogId) {
   }
 }
 
+async function createComment(vlogId, commentFormData) {
+  try {
+    const res = await fetch(`${BASE_URL}/${vlogId}/comments`, {
+      method: `POST`,
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(commentFormData)
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export {
   create,
   index,
   show,
   update,
   deleteVlog,
+  createComment,
 }
