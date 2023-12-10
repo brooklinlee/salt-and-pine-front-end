@@ -26,11 +26,7 @@ const CommentCard = (props) => {
         <p>{ props.comment.text }</p>
         <div>
         {props.comment.author?._id === props.user?.profile && <button onClick={() => handleShowForm()}>Edit</button>}
-        {props.comment.author?._id === props.user?.profile && <button onClick={() => {
-  console.log('Clicked Delete Button:', props.comment._id);
-  props.handleDeleteComment(props.comment._id);
-}}>Delete</button>
-}
+        {props.comment.author?._id === props.user?.profile && <button onClick={() => { props.handleDeleteComment(props.comment._id) }}>Delete</button>}
         </div>
         {showForm && <EditComment comment={props.comment} handleEditComment={props.handleEditComment} handleHideForm={handleHideForm} />}
       </article>

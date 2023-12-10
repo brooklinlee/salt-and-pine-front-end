@@ -31,6 +31,10 @@ const VlogDetails = (props) => {
   }
 
   // handleDeleteComment
+  const handleDeleteComment = async(commentId) => {
+    const deletedComment = await VlogService.deleteComment(vlogId, commentId)
+    setVlog({...vlog, comments: vlog.comments.filter(cmt => cmt._id !== deletedComment._id)})
+  }
 
   useEffect(() => {
     const fetchVlog = async() => {
@@ -69,7 +73,7 @@ const VlogDetails = (props) => {
         {/* newVlogComment component, handle add comment */}
         {props.user?.profile && <NewBlogComment handleAddComment={handleAddComment} />}
         {/* current comments component, handle edit comment and handle delete comment */}
-        <Comments comments={vlog.comments} user={props.user} vlogId={vlogId} handleEditComment={handleEditComment} />
+        <Comments comments={vlog.comments} user={props.user} vlogId={vlogId} handleEditComment={handleEditComment} handleDeleteComment={handleDeleteComment} />
       </section>
     </>
   )

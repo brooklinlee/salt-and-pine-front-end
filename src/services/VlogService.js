@@ -100,6 +100,17 @@ async function updateComment(vlogId, commentFormData) {
 }
 
 // delete comment
+async function deleteComment(vlogId, commentId) {
+  try {
+    const res = await fetch(`${BASE_URL}/${vlogId}/comments/${commentId}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 
 export {
@@ -110,4 +121,5 @@ export {
   deleteVlog,
   createComment,
   updateComment,
+  deleteComment
 }
