@@ -82,6 +82,26 @@ async function createComment(vlogId, commentFormData) {
   }
 }
 
+// update comment
+async function updateComment(vlogId, commentFormData) {
+  try {
+    const res = await fetch(`${BASE_URL}/${vlogId}/comments/${commentFormData._id}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(commentFormData)
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// delete comment
+
+
 export {
   create,
   index,
@@ -89,4 +109,5 @@ export {
   update,
   deleteVlog,
   createComment,
+  updateComment,
 }

@@ -25,6 +25,10 @@ const VlogDetails = (props) => {
   }
 
   // handleEditComment
+  const handleEditComment = async(commentFormData) => {
+    const editedComment = await VlogService.updateComment(vlogId, commentFormData)
+    setVlog({...vlog, comments: vlog.comments.map(cmt => cmt._id === commentFormData._id ? editedComment : cmt)})
+  }
 
   // handleDeleteComment
 
@@ -65,7 +69,7 @@ const VlogDetails = (props) => {
         {/* newVlogComment component, handle add comment */}
         {props.user?.profile && <NewBlogComment handleAddComment={handleAddComment} />}
         {/* current comments component, handle edit comment and handle delete comment */}
-        <Comments comments={vlog.comments} user={props.user} vlogId={vlogId} />
+        <Comments comments={vlog.comments} user={props.user} vlogId={vlogId} handleEditComment={handleEditComment} />
       </section>
     </>
   )
