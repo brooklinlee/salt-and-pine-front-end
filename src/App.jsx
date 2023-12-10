@@ -14,6 +14,7 @@ import EditBlog from './pages/EditBlog/EditBlog'
 import NewVlog from './pages/NewVlog/NewVlog'
 import VlogList from './pages/VlogList/VlogList'
 import VlogDetails from './pages/VlogDetails/VlogDetails'
+import EditVlog from './pages/EditVlog/EditVlog'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -72,6 +73,13 @@ function App() {
     setVlogs([...vlogs, newVlog])
     navigate('/vlogs')
   }
+
+    // handle update vlog
+    const handleUpdateVlog = async (vlogFormData) => {
+      const updatedVlog = await vlogService.update(vlogFormData)
+      setVlogs(vlogs.map((v) => vlogFormData._id === v._id ? updatedVlog : v))
+      navigate(`/vlogs/${vlogFormData._id}`)
+    }
   
   // use effects
   useEffect(() => {
@@ -167,6 +175,14 @@ function App() {
           path='/vlogs/:vlogId'
           element={
             <VlogDetails user={user} />
+          }
+        />
+        <Route 
+          path='/vlogs/:vlogId/edit'
+          element={
+            <ProtectedRoute user={user}>
+              <EditVlog handleUpdateVlog={handleUpdateVlog} />
+            </ProtectedRoute>
           }
         />
       </Routes>

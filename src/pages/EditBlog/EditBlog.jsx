@@ -13,15 +13,12 @@ const EditBlog = (props) => {
   
   function handleSubmit(evt) {
     evt.preventDefault()
-    props.handleUpdateBlog(formData) // update?
+    props.handleUpdateBlog(formData) 
   }
   
-
   return ( 
     <main>
-      <h1>Edit Blog Page</h1>
-      <main>
-      <h1>New Blog Form</h1>
+      <h1>Edit Blog Form</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title-input">Title: </label>
         <input 
@@ -71,8 +68,7 @@ const EditBlog = (props) => {
         />
         <button type="submit">Update Blog</button>
       </form>
-    </main>
-    </main>
+  </main>
   )
 }
 

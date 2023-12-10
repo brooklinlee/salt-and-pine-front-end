@@ -25,9 +25,7 @@ const NewVlog = (props) => {
 
   return ( 
     <>
-    {/* return the form */}
     <form onSubmit={handleSubmit}>
-    {/* lable and input pairs */}
     <label htmlFor="title-input">Title: </label>
     <input 
       required
@@ -73,7 +71,6 @@ const NewVlog = (props) => {
       value={formData.location}
       onChange={handleChange}
     />
-    {/* submit button */}
     <button type="submit">Add New Vlog</button>
     </form>
       <h1>New Vlog Form</h1>

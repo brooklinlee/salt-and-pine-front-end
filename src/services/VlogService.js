@@ -36,8 +36,25 @@ async function show(vlogId) {
   }
 }
 
+async function update(vlogFormData) {
+  try {
+    const res = await fetch(`${BASE_URL}/${vlogFormData._id}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(vlogFormData)
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export {
   create,
   index,
   show,
+  update,
 }
