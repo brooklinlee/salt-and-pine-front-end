@@ -13,6 +13,7 @@ import NewBlog from './pages/NewBlog/NewBlog'
 import EditBlog from './pages/EditBlog/EditBlog'
 import NewVlog from './pages/NewVlog/NewVlog'
 import VlogList from './pages/VlogList/VlogList'
+import VlogDetails from './pages/VlogDetails/VlogDetails'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -161,6 +162,12 @@ function App() {
             <ProtectedRoute user={user}>
               <NewVlog handleAddVlog={handleAddVlog} />
             </ProtectedRoute>
+          }
+        />
+        <Route 
+          path='/vlogs/:vlogId'
+          element={
+            <VlogDetails />
           }
         />
       </Routes>

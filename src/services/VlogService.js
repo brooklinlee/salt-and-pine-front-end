@@ -28,12 +28,12 @@ async function index() {
 }
 
 async function show(vlogId) {
-try {
-  const res = await fetch(`${BASE_URL}/${vlogId}`)
-  return res.json()
-} catch (error) {
-  console.log(error)
-}
+  try {
+    const res = await fetch(`${BASE_URL}/${vlogId}`)
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 export {
