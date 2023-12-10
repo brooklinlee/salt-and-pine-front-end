@@ -18,7 +18,7 @@ async function create(vlogFormData) {
   }
 }
 
-async function index(){
+async function index() {
   try {
     const res = await fetch(`${BASE_URL}`)
     return res.json()
@@ -27,7 +27,17 @@ async function index(){
   }
 }
 
+async function show(vlogId) {
+try {
+  const res = await fetch(`${BASE_URL}/${vlogId}`)
+  return res.json()
+} catch (error) {
+  console.log(error)
+}
+}
+
 export {
   create,
   index,
+  show,
 }
