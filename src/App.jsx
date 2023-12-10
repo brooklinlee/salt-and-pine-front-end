@@ -67,7 +67,6 @@ function App() {
   }
   
   // ===*VLOGS*===
-  // write handleAddVlog, pass to component
   const handleAddVlog = async (vlogFormData) => {
     const newVlog = await vlogService.create(vlogFormData)
     setVlogs([...vlogs, newVlog])
@@ -87,7 +86,7 @@ function App() {
   useEffect(() => {
     const fetchAllVlogs = async () => {
       const vlogData = await vlogService.index()
-      console.log(vlogData)
+      // console.log(vlogData)
       setVlogs(vlogData)
     }
     fetchAllVlogs()
@@ -167,7 +166,7 @@ function App() {
         <Route 
           path='/vlogs/:vlogId'
           element={
-            <VlogDetails />
+            <VlogDetails user={user} />
           }
         />
       </Routes>
