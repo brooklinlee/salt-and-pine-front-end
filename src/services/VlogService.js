@@ -52,9 +52,24 @@ async function update(vlogFormData) {
   }
 }
 
+async function deleteVlog(vlogId) {
+  try {
+    const res = await fetch(`${BASE_URL}/${vlogId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+      },
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export {
   create,
   index,
   show,
   update,
+  deleteVlog,
 }

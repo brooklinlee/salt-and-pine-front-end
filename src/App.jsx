@@ -74,12 +74,18 @@ function App() {
     navigate('/vlogs')
   }
 
-    // handle update vlog
     const handleUpdateVlog = async (vlogFormData) => {
       const updatedVlog = await vlogService.update(vlogFormData)
       setVlogs(vlogs.map((v) => vlogFormData._id === v._id ? updatedVlog : v))
       navigate(`/vlogs/${vlogFormData._id}`)
     }
+    
+  // handleDeleteVlog
+  const handleDeleteVlog = async(vlogId) => {
+    const deletedVlog = await vlogService.deleteVlog(vlogId)
+    setVlogs(vlogs.filter(v => v._id !== deletedVlog._id))
+    navigate('/vlogs')
+  }
   
   // use effects
   useEffect(() => {
@@ -174,7 +180,7 @@ function App() {
         <Route 
           path='/vlogs/:vlogId'
           element={
-            <VlogDetails user={user} />
+            <VlogDetails user={user} handleDeleteVlog={handleDeleteVlog} />
           }
         />
         <Route 

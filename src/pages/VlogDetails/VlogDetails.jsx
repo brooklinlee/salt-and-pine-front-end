@@ -37,7 +37,7 @@ const VlogDetails = (props) => {
         {vlog.author._id === props.user.profile &&
         <>
         <Link to={`/vlogs/${vlogId}/edit`} state={ vlog }> <button>Edit</button> </Link>
-          <button>Delete</button>
+          <button onClick={() => { props.handleDeleteVlog(vlogId) }}>Delete</button>
         </>
         }
       </section>
