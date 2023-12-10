@@ -83,6 +83,15 @@ function App() {
     fetchAllBlogs()
   }, [])
 
+  useEffect(() => {
+    const fetchAllVlogs = async () => {
+      const vlogData = await vlogService.index()
+      console.log(vlogData)
+      setVlogs(vlogData)
+    }
+    fetchAllVlogs()
+  }, [])
+
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
@@ -141,16 +150,18 @@ function App() {
           }
         />
         <Route 
+          path='/vlogs'
+          element={ 
+            <VlogList vlogs={vlogs} /> 
+          }
+          />
+        <Route 
           path='/vlogs/newVlog'
           element={
             <ProtectedRoute user={user}>
               <NewVlog handleAddVlog={handleAddVlog} />
             </ProtectedRoute>
           }
-        />
-        <Route 
-          path='/vlogs'
-          element={ <VlogList /> }
         />
       </Routes>
     </>
